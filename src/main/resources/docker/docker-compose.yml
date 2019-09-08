@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  app:
+    build:
+      context: docker-compose.yml
+      dockerfile: DockerFile
+    ports:
+      - "8090:8080"
+    #restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/country
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: pass
+
+volumes:
+  db-data:
