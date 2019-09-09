@@ -5,10 +5,10 @@ services:
     ports:
       - "5432:5432"
     volumes:
-#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   app:
     build:
-      context: docker-compose.yml
+      context: .
       dockerfile: DockerFile
     ports:
       - "8090:8080"
