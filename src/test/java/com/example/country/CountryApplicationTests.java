@@ -1,35 +1,18 @@
 package com.example.country;
 
-import com.example.country.entity.Country;
-import com.example.country.entity.Language;
 import com.example.country.exception.CountryNotFoundException;
 import com.example.country.exception.LanguageNotFoundException;
-import com.example.country.repository.CountryRepository;
-import com.example.country.service.CountryService;
-import com.example.country.service.CountryServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CountryApplicationTests {
 
-    @InjectMocks
-    private CountryServiceImpl countryService;
-
-    @Mock
-    private CountryRepository countryRepository;
 
     @Test
     public void contextLoads() {

@@ -20,9 +20,6 @@ public class Language {
     @Column(name = "localization")
     private String localization;
 
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-//    private List<CountryLanguage> countryLanguages;
-
     public Language(String localization) {
         this.localization = localization;
     }

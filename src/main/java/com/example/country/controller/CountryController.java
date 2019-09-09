@@ -14,11 +14,6 @@ public class CountryController {
 
     private final CountryService countryService;
 
-    @GetMapping("")
-    public String hello() {
-        return "hello";
-    }
-
     @GetMapping("/{code}")
     public CountryDTOOut getCountryName(
             @PathVariable("code") final String code,

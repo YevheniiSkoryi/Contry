@@ -22,9 +22,6 @@ public class Country {
     private String code;
 
 
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-//    private List<CountryLanguage> countryLanguages;
-
     public Country(String code) {
         this.code = code;
     }
