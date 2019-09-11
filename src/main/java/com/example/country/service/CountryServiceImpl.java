@@ -16,18 +16,14 @@ public class CountryServiceImpl implements CountryService {
     private final LanguageRepository languageRepository;
 
     @Override
-    public CountryDTOOut getCountryNameByCodeAndLocalization(String code, String localization) {
-
-        Integer countryId = countryRepository.getIdByCode(code)
+    public CountryDTOOut getByCodeAndLocalization(final String code, final String localization) {
+        final Integer countryId = countryRepository.getIdByCode(code)
             .orElseThrow(() -> new CountryNotFoundException("Country with code = " + code + " not found"));
 
-        Integer languageId = languageRepository.getIdByLocalization(localization)
-            .orElseThrow(() -> new LanguageNotFoundException("Language = " + localization + " not found"));
+        final Integer languageId = languageRepository.getIdByLocalization(localization.toUpperCase())
+            .orElseThrow(() -> new LanguageNotFoundException("Language = " + localization.toUpperCase() + " not found"));
 
-        String translate = countryRepository.getTranslateByCountryIdAndLanguageId(countryId, languageId)
-            .orElseThrow(() -> new TranslateNotFoundException("Translate not found"));
-
-        return new CountryDTOOut(translate);
+        return countryRepository.getTranslateByCountryIdAndLanguageId(countryId, languageId)
+            .orElseThrow(() -> new TranslateNotFoundException("Translate not found for code = " + code + ", localization = " + localization));
     }
-
 }

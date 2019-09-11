@@ -1,11 +1,10 @@
 package com.example.country.controller;
 
 import com.example.country.dto.CountryDTOOut;
+import com.example.country.exception.LocalizationNotValid;
 import com.example.country.service.CountryService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.FileNotFoundException;
 
 @RestController
 @AllArgsConstructor
@@ -20,6 +19,9 @@ public class CountryController {
             @RequestParam(defaultValue = "") final String localization
     ) {
 
-        return countryService.getCountryNameByCodeAndLocalization(code, localization);
+        if(localization.isEmpty())
+            throw new LocalizationNotValid("Localization not valid");
+
+        return countryService.getByCodeAndLocalization(code, localization);
     }
 }

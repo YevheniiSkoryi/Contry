@@ -5,5 +5,5 @@ import com.example.country.dto.CountryDTOOut;
 
 public interface CountryService {
 
-    CountryDTOOut getCountryNameByCodeAndLocalization(String code, String localization);
+    CountryDTOOut getByCodeAndLocalization(String code, String localization);
 }

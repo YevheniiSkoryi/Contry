@@ -15,24 +15,25 @@ import java.util.Optional;
 public class LanguageRepositoryImpl implements LanguageRepository {
 
     @org.intellij.lang.annotations.Language(value = "PostgreSQL")
-    private final String FIND_LANGUAGE_SQL = "select id from Language where localization = :localization";
-
+    private final String FIND_LANGUAGE_SQL = "SELECT id FROM language WHERE localization = :localization";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
     public Optional<Integer> getIdByLocalization(String localization) {
 
-        try{
+        try {
             final SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("localization", localization);
-            final Integer languageId = namedParameterJdbcTemplate
-                .queryForObject(FIND_LANGUAGE_SQL, namedParameters, Integer.class);
+                .addValue("localization", localization.toUpperCase());
+            final Integer languageId = namedParameterJdbcTemplate.queryForObject(
+                FIND_LANGUAGE_SQL,
+                namedParameters,
+                Integer.class
+            );
 
             return Optional.ofNullable(languageId);
-        }catch (EmptyResultDataAccessException exception){
+        } catch (EmptyResultDataAccessException exception) {
             return Optional.empty();
         }
-
     }
 }
