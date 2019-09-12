@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class CountryDTOOut {
 
-    @JsonProperty("id")
+    @JsonProperty("code")
     private String code;
 
     @JsonProperty("name")

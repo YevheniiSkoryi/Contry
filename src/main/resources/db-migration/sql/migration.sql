@@ -50,3 +50,7 @@ VALUES ('Україна', 1, 1),
 --changeset yevhenii:7 context:!test
 INSERT INTO country(code)
 VALUES ('003');
+
+--changeset yevhenii:8 context:!test
+INSERT INTO language(localization)
+VALUES ('LI');
